@@ -24,7 +24,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
+import com.example.foodordering.Activity.ItemsList.ItemsListActivity
 import com.example.foodordering.Domain.CategoryModel
 import com.example.foodordering.R
 
@@ -70,6 +72,11 @@ fun CategorySection(categories: SnapshotStateList<CategoryModel>, showCategoryLo
                                 .weight(1f)
                                 .padding(horizontal = 8.dp),
                             onItemClick = {
+                                val intent = Intent(context, ItemsListActivity::class.java).apply {
+                                    putExtra("id", categoryModel.Id.toString())
+                                    putExtra("title", categoryModel.Name)
+                                }
+                                startActivity(context, intent, null)
                             }
                         )
                     }

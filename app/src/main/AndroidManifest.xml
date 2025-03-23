@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FoodOrdering"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.ItemsList.ItemsListActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.BaseActivity"
             android:exported="false" />
         <activity
@@ -28,7 +31,7 @@
             android:name=".Activity.Dashboard.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.FoodOrdering"></activity>
+            android:theme="@style/Theme.FoodOrdering" />
     </application>
 
 </manifest>
