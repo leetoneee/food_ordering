@@ -80,12 +80,14 @@ fun AutoSlidingCarosel(
                     .height(150.dp)
             )
         }
-        DotIndicator(modifier = Modifier
-            .padding(horizontal = 8.dp)
-            .align(Alignment.CenterHorizontally),
+        DotIndicator(
+            modifier = Modifier
+                .padding(horizontal = 8.dp)
+                .align(Alignment.CenterHorizontally),
             totalDots = banners.size,
             selectedIndex = if (isDragged) pagerState.currentPage else pagerState.currentPage,
-            dotSize = 8.dp)
+            dotSize = 8.dp
+        )
     }
 }
 
@@ -103,13 +105,12 @@ fun DotIndicator(
             .wrapContentWidth()
             .wrapContentHeight()
     ) {
-        items(totalDots){
-            index ->
-                IndicatorDot(
-                    color = if (index == selectedIndex) selectedColor else unSelectedColor,
-                    size = dotSize,
-                )
-            if (index != totalDots-1) {
+        items(totalDots) { index ->
+            IndicatorDot(
+                color = if (index == selectedIndex) selectedColor else unSelectedColor,
+                size = dotSize,
+            )
+            if (index != totalDots - 1) {
                 Spacer(modifier = Modifier.padding(horizontal = 2.dp))
             }
         }
