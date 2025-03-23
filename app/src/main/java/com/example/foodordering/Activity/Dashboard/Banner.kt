@@ -18,6 +18,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,7 +37,7 @@ import com.google.accompanist.pager.PagerState
 import com.example.foodordering.R
 
 @Composable
-fun Banner(banners: MutableList<BannerModel>, showBannerLoading: Boolean) {
+fun Banner(banners: SnapshotStateList<BannerModel>, showBannerLoading: Boolean) {
     if (showBannerLoading) {
         Box(
             modifier = Modifier

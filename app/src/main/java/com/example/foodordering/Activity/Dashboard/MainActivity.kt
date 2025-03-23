@@ -11,12 +11,14 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.example.foodordering.Activity.BaseActivity
 import com.example.foodordering.Domain.BannerModel
+import com.example.foodordering.Domain.CategoryModel
 import com.example.foodordering.ViewModel.MainViewModel
 
 class MainActivity : BaseActivity() {
@@ -34,15 +36,25 @@ fun MainScreen(){
     val scaffoldState = rememberScaffoldState()
     val viewModel = MainViewModel()
 
-    val banners = remember { mutableListOf<BannerModel>() }
+    val banners = remember { mutableStateListOf<BannerModel>() }
+    val categories = remember { mutableStateListOf<CategoryModel>() }
 
     var showBannerLoading by remember { mutableStateOf(true) }
+    var showCategoryLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         viewModel.loadBanner().observeForever {
             banners.clear()
             banners.addAll(it)
             showBannerLoading = false
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.loadCategory().observeForever {
+            categories.clear()
+            categories.addAll(it)
+            showCategoryLoading = false
         }
     }
 
@@ -63,6 +75,9 @@ fun MainScreen(){
             }
             item {
                 Search()
+            }
+            item {
+                CategorySection(categories, showCategoryLoading)
             }
         }
     }
