@@ -1,6 +1,6 @@
 package com.example.foodordering.Activity.ItemsList
 
-import android.widget.RatingBar
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,7 +29,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
+import com.example.foodordering.Activity.DetailEachFood.DetailEachFoodActivity
 import com.example.foodordering.Domain.FoodModel
 import com.example.foodordering.R
 
@@ -54,7 +56,10 @@ fun Item(item: FoodModel, index: Int) {
             .background(color = colorResource(R.color.grey), shape = RoundedCornerShape(10.dp))
             .wrapContentHeight()
             .clickable {
-
+                val intent=Intent(context, DetailEachFoodActivity::class.java).apply {
+                    putExtra("object", item)
+                }
+                startActivity(context, intent, null)
             }
     ) {
         if (isEvenRow) {
